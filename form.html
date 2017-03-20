@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Form</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+   <form action="" method="POST" role="form" style="max-width:996px; margin:0 auto;">
+   	<legend>連絡表單</legend>
+   
+   	<div class="form-group" id="contact-form">
+   		<label for="">連絡人</label>
+   		<input type="text" class="form-control" id="name" placeholder="必填">
+   		<label for="">手機</label>
+   		<input type="text" class="form-control" id="phone" placeholder="必填">
+   		<label for="">信箱</label>
+   		<input type="text" class="form-control" id="email" col="5" placeholder="">
+   		<label for="">留言</label>
+   		<textarea class="form-control" id="message"  rows="4" cols="50" placeholder="必填"></textarea>
+   	</div>  
+   	<button type="submit" class="btn btn-primary">Submit</button>
+   </form>
+<script src="https://code.jquery.com/jquery-3.1.0.js"></script>	
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script>
+
+	$(document).on('submit', '#contact-form', function(){
+		var name = $('#name').val();
+		var phone = $('#phone').val();
+		var email = $('#email').val();
+		var message = $('#message').val();
+		$.ajax({
+		       url: "https://docs.google.com/forms/d/e/1FAIpQLSeUiyDEkOkjy5bfLubp0eqY-ULVmya4Abp0-qmWDfrYXWqyPg/formResponse",
+		       beforeSend: function (xhr) {
+		         xhr.setRequestHeader('Access-Control-Allow-Origin', 'chrome-extension://EXTENSION_ID');
+		         xhr.setRequestHeader('Access-Control-Allow-Methods', 'GET, POST, PUT');
+		       },
+		       data: { 
+		       "entry.2097622607": name, 
+		       "entry.934039893": phone, 
+		       "entry.1011681575": email,
+		       "entry.1974281588": message,
+		        },
+		       type: "POST",
+		       dataType: "xml",
+		       xhrFields: {
+		           withCredentials: true
+		       },
+		       statusCode: {
+		           0: function () {
+		               document.getElementById("message").innerHTML = "Your form has been submitted!";
+		               window.location.replace("ThankYou.html");
+		           },
+		           200: function () {
+		               document.getElementById("message").innerHTML = "Your form has been submitted!";
+		               console.log("Success");
+		               window.location.replace("ThankYou.html");
+		           }
+		       }
+		   });
+	});
+
+	
+</script>
+</body>
+</html>
