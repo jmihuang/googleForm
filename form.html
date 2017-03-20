@@ -25,7 +25,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <script>
 
-	$(document).on('submit', '#contact-form', function(){
+	$(document).on('submit', '#contact-form', function(e){
 		var name = $('#name').val();
 		var phone = $('#phone').val();
 		var email = $('#email').val();
@@ -59,6 +59,7 @@
 		           }
 		       }
 		   });
+		e.preventDefault();
 	});
 
 	
