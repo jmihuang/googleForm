@@ -31,11 +31,7 @@
 		var email = $('#email').val();
 		var message = $('#message').val();
 		$.ajax({
-		       url: "https://docs.google.com/forms/d/e/1FAIpQLSeUiyDEkOkjy5bfLubp0eqY-ULVmya4Abp0-qmWDfrYXWqyPg/formResponse",
-		       beforeSend: function (xhr) {
-		         xhr.setRequestHeader('Access-Control-Allow-Origin', 'chrome-extension://EXTENSION_ID');
-		         xhr.setRequestHeader('Access-Control-Allow-Methods', 'GET, POST, PUT');
-		       },
+		       url: "https://docs.google.com/forms/d/e/1FAIpQLSeUiyDEkOkjy5bfLubp0eqY-ULVmya4Abp0-qmWDfrYXWqyPg/formResponse",,
 		       data: { 
 		       "entry.2097622607": name, 
 		       "entry.934039893": phone, 
@@ -43,10 +39,7 @@
 		       "entry.1974281588": message,
 		        },
 		       type: "POST",
-		       dataType: "xml",
-		       xhrFields: {
-		           withCredentials: true
-		       },
+		       dataType: "json",
 		       statusCode: {
 		           0: function () {
 		               document.getElementById("message").innerHTML = "Your form has been submitted!";
